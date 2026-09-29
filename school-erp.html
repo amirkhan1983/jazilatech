@@ -63,170 +63,404 @@
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        .erp-gallery {
-            border: 1px solid #e8e8e8;
-            border-radius: 10px;
-            overflow: hidden;
-            background: #fff;
-            box-shadow: 0 6px 24px rgba(0, 0, 0, .06)
-        }
+    /* =========================================================
+       SCHOOL ERP IMAGE GALLERY / CAROUSEL
+       ========================================================= */
 
-        .erp-gallery-main {
-            position: relative;
-            background: #f7f9fc
-        }
+    .erp-gallery {
+        border: 1px solid #e8e8e8;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, .06);
+    }
+
+    .erp-gallery-main {
+        position: relative;
+        background: #f7f9fc;
+    }
+
+    .erp-gallery-main img {
+        width: 100%;
+        height: 360px;
+        object-fit: contain;
+        background: #fff;
+        display: block;
+        cursor: zoom-in;
+    }
+
+    .erp-gallery-caption {
+        position: absolute;
+        left: 12px;
+        bottom: 12px;
+        background: rgba(0, 32, 96, .85);
+        color: #fff;
+        font-size: 13px;
+        padding: 6px 12px;
+        border-radius: 20px;
+    }
+
+    .erp-gallery-counter {
+        position: absolute;
+        right: 58px;
+        top: 12px;
+        background: rgba(0, 0, 0, .6);
+        color: #fff;
+        font-size: 12px;
+        padding: 5px 11px;
+        border-radius: 20px;
+        line-height: 1.6;
+    }
+
+    /* Zoom Button */
+
+    .erp-zoom {
+        position: absolute;
+        right: 12px;
+        top: 12px;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(0, 32, 96, .9);
+        color: #fff;
+        font-size: 14px;
+        cursor: pointer;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .erp-zoom:hover {
+        background: #002060;
+    }
+
+    /* Previous / Next Buttons */
+
+    .erp-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: none;
+        background: #fff;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, .2);
+        font-size: 18px;
+        color: #002060;
+        cursor: pointer;
+        z-index: 2;
+    }
+
+    .erp-arrow:hover {
+        background: #002060;
+        color: #fff;
+    }
+
+    .erp-arrow.prev {
+        left: 12px;
+    }
+
+    .erp-arrow.next {
+        right: 12px;
+    }
+
+    /* Slider Dots */
+
+    .erp-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 12px 14px;
+        background: #fff;
+    }
+
+    .erp-dots button {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: none;
+        background: #cfd8e3;
+        cursor: pointer;
+        padding: 0;
+        transition: all .2s ease;
+    }
+
+    .erp-dots button.active {
+        background: #002060;
+        width: 26px;
+        border-radius: 6px;
+    }
+
+    /* Lightbox */
+
+    .erp-lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, .88);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        padding: 20px;
+    }
+
+    .erp-lightbox.open {
+        display: flex;
+    }
+
+    .erp-lightbox img {
+        max-width: 95%;
+        max-height: 88vh;
+        border-radius: 8px;
+        background: #fff;
+        object-fit: contain;
+    }
+
+    .erp-lightbox .close-lb {
+        position: absolute;
+        top: 18px;
+        right: 22px;
+        background: #fff;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+        color: #002060;
+        line-height: 1;
+    }
+
+
+    /* FREE SCHOOL ERP DEMO CARD - 2nd image style, 1st image bg kept */
+
+    .erp-demo-widget {
+        background: var(--smoke-color);
+        border: 1px solid #e2eaf4;
+        padding: 22px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 18px rgba(0, 32, 96, .05);
+        box-sizing: border-box;
+    }
+
+    /* Header: icon + title + subtitle */
+
+    .erp-demo-widget .erp-demo-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 0 0 18px;
+    }
+
+    .erp-demo-widget .erp-demo-header-icon {
+        width: 54px;
+        height: 54px;
+        flex: 0 0 54px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #e8f1ff;
+        border-radius: 12px;
+        color: #1264f4;
+        font-size: 24px;
+        line-height: 1;
+    }
+
+    .erp-demo-widget .erp-demo-header-text {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .erp-demo-widget .widget_title {
+        margin: 0 0 0;
+        padding: 0;
+        color: #002060;
+        font-size: 22px;
+        font-weight: 800;
+        line-height: 1.25;
+    }
+
+    /* Demo List */
+
+    .erp-demo-widget .widget-workhours ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    /* Each Demo Information Box - white rounded card */
+
+    .erp-demo-widget .widget-workhours li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        min-height: 68px;
+        margin: 0 0 12px;
+        padding: 10px 14px 10px 10px;
+        background: #fff;
+        border: 1px solid #e6edf7;
+        border-radius: 14px;
+        box-shadow: 0 2px 10px rgba(0, 32, 96, .04);
+        box-sizing: border-box;
+    }
+
+    .erp-demo-widget .widget-workhours li:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Left blue icon box + two-line text */
+
+    .erp-demo-widget .widget-workhours li > i {
+        width: 48px;
+        height: 48px;
+        flex: 0 0 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #e8f1ff;
+        border-radius: 12px;
+        color: #1264f4;
+        font-size: 20px;
+        line-height: 1;
+        margin: 0;
+    }
+
+    .erp-demo-widget .widget-workhours li .erp-demo-text {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+        flex: 1;
+    }
+
+    .erp-demo-widget .widget-workhours li .erp-demo-label {
+        display: block;
+        color: #8a9bb3;
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .erp-demo-widget .widget-workhours li .erp-demo-value {
+        display: block;
+        color: #002060;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.4;
+    }
+
+    /* Demo Booking Button - solid blue */
+
+    .erp-demo-widget .widget-workhours li.demo-booking {
+        padding: 0;
+        border: none;
+        background: transparent;
+        box-shadow: none;
+        min-height: 0;
+    }
+
+    .erp-demo-widget .widget-workhours li.demo-booking a {
+        width: 100%;
+        min-height: 54px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 14px 18px;
+        background: #1264f4;
+        border: 1px solid #1264f4;
+        border-radius: 12px;
+        color: #fff !important;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        text-align: center;
+        text-decoration: none;
+        transition: all .25s ease;
+        box-sizing: border-box;
+    }
+
+    .erp-demo-widget .widget-workhours li.demo-booking a:hover {
+        background: #002060;
+        border-color: #002060;
+        color: #fff !important;
+    }
+
+    .erp-demo-widget .widget-workhours li.demo-booking a i {
+        margin: 0;
+        font-size: 16px;
+        transition: transform .25s ease;
+    }
+
+    .erp-demo-widget .widget-workhours li.demo-booking a:hover i {
+        transform: translateX(4px);
+    }
+
+
+    @media (max-width: 767px) {
 
         .erp-gallery-main img {
-            width: 100%;
-            height: 360px;
-            object-fit: contain;
-            background: #fff;
-            display: block;
-            cursor: zoom-in
+            height: 240px;
         }
 
-        .erp-gallery-caption {
-            position: absolute;
-            left: 12px;
-            bottom: 12px;
-            background: rgba(0, 32, 96, .85);
-            color: #fff;
-            font-size: 13px;
-            padding: 6px 12px;
-            border-radius: 20px
+        .erp-demo-widget {
+            padding: 18px;
+            border-radius: 16px;
         }
 
-        .erp-gallery-counter {
-            position: absolute;
-            right: 58px;
-            top: 12px;
-            background: rgba(0, 0, 0, .6);
-            color: #fff;
-            font-size: 12px;
-            padding: 5px 11px;
-            border-radius: 20px;
-            line-height: 1.6
+        .erp-demo-widget .erp-demo-header {
+            gap: 12px;
+            margin-bottom: 16px;
         }
 
-        .erp-zoom {
-            position: absolute;
-            right: 12px;
-            top: 12px;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 32, 96, .9);
-            color: #fff;
-            font-size: 14px;
-            cursor: pointer;
-            z-index: 3;
-            display: flex;
-            align-items: center;
-            justify-content: center
+        .erp-demo-widget .erp-demo-header-icon {
+            width: 48px;
+            height: 48px;
+            flex-basis: 48px;
+            font-size: 21px;
+            border-radius: 10px;
         }
 
-        .erp-zoom:hover {
-            background: #002060
-        }
-
-        .erp-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            border: none;
-            background: #fff;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, .2);
-            font-size: 18px;
-            color: #002060;
-            cursor: pointer;
-            z-index: 2
-        }
-
-        .erp-arrow:hover {
-            background: #002060;
-            color: #fff
-        }
-
-        .erp-arrow.prev {
-            left: 12px
-        }
-
-        .erp-arrow.next {
-            right: 12px
-        }
-
-        .erp-dots {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            padding: 12px 12px 14px;
-            background: #fff
-        }
-
-        .erp-dots button {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            border: none;
-            background: #cfd8e3;
-            cursor: pointer;
-            padding: 0
-        }
-
-        .erp-dots button.active {
-            background: #002060;
-            width: 26px;
-            border-radius: 6px
-        }
-
-        .erp-lightbox {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, .88);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            padding: 20px
-        }
-
-        .erp-lightbox.open {
-            display: flex
-        }
-
-        .erp-lightbox img {
-            max-width: 95%;
-            max-height: 88vh;
-            border-radius: 8px;
-            background: #fff;
-            object-fit: contain
-        }
-
-        .erp-lightbox .close-lb {
-            position: absolute;
-            top: 18px;
-            right: 22px;
-            background: #fff;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+        .erp-demo-widget .widget_title {
             font-size: 20px;
-            cursor: pointer;
-            color: #002060;
-            line-height: 1
+            margin-bottom: 0;
         }
 
-        @media(max-width:767px) {
-            .erp-gallery-main img {
-                height: 240px
-            }
+        .erp-demo-widget .erp-demo-subtitle {
+            font-size: 13px;
         }
-    </style>
+
+        .erp-demo-widget .widget-workhours li {
+            min-height: 62px;
+            padding: 8px 12px 8px 8px;
+            border-radius: 12px;
+        }
+
+        .erp-demo-widget .widget-workhours li > i {
+            width: 44px;
+            height: 44px;
+            flex-basis: 44px;
+            font-size: 18px;
+        }
+
+        .erp-demo-widget .widget-workhours li .erp-demo-label {
+            font-size: 12px;
+        }
+
+        .erp-demo-widget .widget-workhours li .erp-demo-value {
+            font-size: 14px;
+        }
+
+        .erp-demo-widget .widget-workhours li.demo-booking a {
+            min-height: 52px;
+            font-size: 13px;
+        }
+    }
+</style>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org/",
@@ -607,16 +841,48 @@
                                 <li><a href="school-erp.html">School ERP</a></li>
                             </ul>
                         </div>
-                        <div class="widget  ">
-                            <h3 class="widget_title">Working Hours</h3>
+
+                        <div class="widget erp-demo-widget">
+                            <div class="erp-demo-header">
+                                <div class="erp-demo-header-icon"><i class="fal fa-calendar-alt"></i></div>
+                                <div class="erp-demo-header-text">
+                                    <h3 class="widget_title">Free Demo</h3>
+                                </div>
+                            </div>
+
                             <div class="widget-workhours">
                                 <ul>
-                                    <li><i class="fal fa-clock"></i>Mon – SAT 10:00 AM – 6:00 PM</li>
+                                    <li>
+                                        <i class="fal fa-clock"></i>
+                                        <div class="erp-demo-text">
+                                            <span class="erp-demo-label">Demo Duration</span>
+                                            <span class="erp-demo-value">30 – 45 Minutes</span>
+                                        </div>
+                                    </li>
 
-                                    <li><span class="text-theme"><i class="fal fa-clock"></i>Sunday closed</span></li>
+                                    <li>
+                                        <i class="fal fa-desktop"></i>
+                                        <div class="erp-demo-text">
+                                            <span class="erp-demo-label">Demo Mode</span>
+                                            <span class="erp-demo-value">Online & Offline Demo</span>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <i class="fal fa-calendar-alt"></i>
+                                        <div class="erp-demo-text">
+                                            <span class="erp-demo-label">Available</span>
+                                            <span class="erp-demo-value">Mon – Sat, 10:00 AM – 10:00 PM</span>
+                                        </div>
+                                    </li>
+
+                                    <li class="demo-booking">
+                                        <a href="contact-us.html">Book A Free Demo <i class="fal fa-arrow-right"></i></a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
+
                         <div class="quote-box" data-bg-src="assets/img/widget/quote-box.jpg">
                             <h3 class="quote-box__title">Have Any Query?</h3>
                             <a href="contact-us.html" class="vs-btn">Get A Quote<i class="far fa-arrow-right"></i></a>
@@ -648,7 +914,7 @@
                             <div class="footer-info_icon"><i class="fal fa-clock"></i></div>
                             <div class="media-body">
                                 <span class="footer-info_label">Working Hours</span>
-                                <div class="footer-info_link">Monday â€“ Saturday: <br> 10:00 AM to 6:00 PM <br> Sunday:
+                                <div class="footer-info_link">Monday – Saturday: <br> 10:00 AM to 6:00 PM <br> Sunday:
                                     Closed</div>
                             </div>
                         </div>
